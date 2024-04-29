@@ -1,0 +1,35 @@
+{% extends 'home.html' %}
+
+{%block title%} titulo {% endblock%}
+
+
+{% block body %}
+
+<div class="container py-4">
+    <div class="row col-md-4 offset-md-4">
+        <h2>Edicion de Cursos</h2>
+      <div class="card">
+        <div class="card-body">
+            <form action="/editarCurso/" method="POST">{% csrf_token %} 
+                <div class="form-group">
+                    <input type="hidden" name="idcurso" value="{{curso.id}}">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtcurso" name="txtcurso" class="form-control" placeholder="Nombre del curso" value="{{curso.nombre}}" required autofocus>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="txtcreditos" name="txtcreditos" class="form-control" placeholder="Creditos" value="{{curso.creditos}}" min="1" max="10" step="1" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-block btn-success text-white"> Cargar </button>
+                </div>
+            </form>
+        </div>
+
+      </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

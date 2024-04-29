@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %} Gestion de Cursos {% endblock %}
+
+
+{% block body %}
+
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-4" > <!--formulario de agregacion-->
+            <h2 style="text-align: center;">Gestion de cursos</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form id="formulariocurso" action="/registrarCurso/" method="POST">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" id="txtcurso" name="txtcurso" class="form-control" placeholder="Nombre del curso" required autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="txtcreditos" name="txtcreditos" class="form-control" placeholder="Creditos" min="1" max="10" step="1" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-block btn-success text-white"> Cargar </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-8">  <!--tabla de Cursos-->
+            <h2 style="text-align: center;">Listado de cursos</h2>
+            <div class="table-responsive">
+                <table class="table table-stripped">
+                    <thead>
+                        <th class="centrado">#</th>
+                        <th class="centrado">Curso</th>
+                        <th class="centrado">Cr&eacute;ditos</th>
+                        <th class="centrado" colspan="2">Opciones</th>
+                    </thead>
+                    <tbody>
+                        {% for c in cursos %}
+                        <tr>
+                            <td class="centrado">{{forloop.counter}}</td>
+                            <td class="centrado">{{c.nombre}}</td>
+                            <td class="centrado">{{c.creditos}}</td>
+                            <td class="centrado">
+                                <a href="/edicionCurso/{{c.id}}" class="btn btn-sm btn-block btn-info"><i class="fas fa-pencil-alt"></i> Editar</a>
+                            </td>
+                            <td class="centrado">
+                                <a href="/eliminacionCurso/{{c.id}}" class="btn btn-sm btn-block btn-danger btnEliminacion"><i class="far fa-trash-alt"></i> Eliminar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+                
+    </div>
+  
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
