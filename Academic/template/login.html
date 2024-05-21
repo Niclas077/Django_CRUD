@@ -1,0 +1,38 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Login {% endblock %}
+
+{% block body %}
+<form class="form-signin" action="/logear/" method="POST">{% csrf_token%}
+    <img class="mb-3" src="{% static 'img/django.png' %}" alt="logo" width="300" height="250">
+    <br />
+    <h1 class="h3 mb-3 fw-normal" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Login</h1>
+    <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="txtemail">
+        <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="txtpassword">
+        <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+        <label>
+            <a href="/recuperar" class="container text-left col">Olvido su contraseña?</a>
+        </label>
+    </div>
+    <div class="mb-4">
+        <label>
+            <a href="/registro" class="container text-left col">Crear cuenta</a>
+        </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Ingresar</button>
+
+</form>
+
+
+
+{% endblock %}
